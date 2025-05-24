@@ -1,30 +1,72 @@
-import { useState } from 'react';
-import './App.css';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { GlobalOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Input, Layout, Menu, Space, Typography } from 'antd';
+import styles from './App.module.css';
+import logo from './assets/react.svg';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className={styles.App}>
+      {/* top-header */}
+      <div className={styles['top-header']}>
+        <div className={styles.inner}>
+          <Typography.Text className={styles.slogan}>让旅游更幸福</Typography.Text>
+          <Dropdown.Button
+            menu={{
+              items: [
+                { key: '1', label: '中文' },
+                { key: '2', label: 'English' },
+              ],
+            }}
+            icon={<GlobalOutlined />}
+          >
+            语言
+          </Dropdown.Button>
+          <Space.Compact className={styles['button-group']}>
+            <Button>注册</Button>
+            <Button>登陆</Button>
+          </Space.Compact>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className={styles['app-header']}>
+        <Layout.Header className={styles['main-header']}>
+          <img src={logo} alt="logo" className={styles['App-logo']} />
+          <Typography.Title level={3} className={styles.title}>
+            慕课旅游网
+          </Typography.Title>
+          <Input.Search
+            placeholder="请输入旅游目的地、主题、或关键字"
+            className={styles['search-input']}
+          />
+        </Layout.Header>
+        <Menu
+          mode={'horizontal'}
+          className={styles['main-menu']}
+          items={[
+            { key: '1', label: '旅游首页' },
+            { key: '2', label: '周末游' },
+            { key: '3', label: '跟团游' },
+            { key: '4', label: '自由行' },
+            { key: '5', label: '私家团' },
+            { key: '6', label: '邮轮' },
+            { key: '7', label: '酒店+景点' },
+            { key: '8', label: '当地玩乐' },
+            { key: '9', label: '主题游' },
+            { key: '10', label: '定制游' },
+            { key: '11', label: '游学' },
+            { key: '12', label: '签证' },
+            { key: '13', label: '企业游' },
+            { key: '14', label: '高端游' },
+            { key: '15', label: '爱玩户外' },
+            { key: '16', label: '保险' },
+          ]}
+        />
       </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+      <Layout.Footer>
+        <Typography.Title level={3} style={{ textAlign: 'center' }}>
+          版权所有 @ React 旅游网
+        </Typography.Title>
+      </Layout.Footer>
+    </div>
   );
 }
 
