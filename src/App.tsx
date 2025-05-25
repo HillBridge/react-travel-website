@@ -3,7 +3,14 @@ import styles from './App.module.css';
 import sideImage3 from './assets/images/sider_2019_02-04-2.png';
 import sideImage2 from './assets/images/sider_2019_02-04.png';
 import sideImage from './assets/images/sider_2019_12-09.png';
-import { Carousel, Footer, Header, ProductCollection, SideMenu } from './components';
+import {
+  BusinessPartners,
+  Carousel,
+  Footer,
+  Header,
+  ProductCollection,
+  SideMenu,
+} from './components';
 import { productList1, productList2, productList3 } from './mockups';
 
 function App() {
@@ -47,6 +54,7 @@ function App() {
           sideImage={sideImage3}
           products={productList3}
         />
+        <BusinessPartners />
       </div>
       <Footer />
     </div>
