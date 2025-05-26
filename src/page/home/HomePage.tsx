@@ -1,5 +1,6 @@
 import { Col, Row, Typography } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage from '../../assets/images/sider_2019_12-09.png';
@@ -15,6 +16,7 @@ import styles from './HomePage.module.css';
 import { productList1, productList2, productList3 } from './mockups';
 
 export const HomePage: React.FC = () => {
+  const { t } = useTranslation('home');
   return (
     <div>
       <Header />
@@ -31,7 +33,7 @@ export const HomePage: React.FC = () => {
         <ProductCollection
           title={
             <Typography.Title level={3} type="warning">
-              爆款推荐
+              {t('hot_recommended')}
             </Typography.Title>
           }
           sideImage={sideImage}
@@ -40,7 +42,7 @@ export const HomePage: React.FC = () => {
         <ProductCollection
           title={
             <Typography.Title level={3} type="danger">
-              新品上市
+              {t('new_arrival')}
             </Typography.Title>
           }
           sideImage={sideImage2}
@@ -49,7 +51,7 @@ export const HomePage: React.FC = () => {
         <ProductCollection
           title={
             <Typography.Title level={3} type="success">
-              国内游推荐
+              {t('domestic_travel')}
             </Typography.Title>
           }
           sideImage={sideImage3}

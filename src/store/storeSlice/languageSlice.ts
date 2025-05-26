@@ -11,7 +11,7 @@ interface LanguageState {
 
 // 初始 state
 const initialState: LanguageState = {
-  value: 'zh',
+  value: (localStorage.getItem('i18nextLng') as Language) || 'zh',
   list: [
     { name: '中文', code: 'zh' },
     { name: 'English', code: 'en' },
