@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './storeSlice/counterSlice';
+import { counterReducer, languageReducer } from './storeSlice';
 
 // 创建 store
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    language: languageReducer,
     // ... 其他 reducers
   },
 });

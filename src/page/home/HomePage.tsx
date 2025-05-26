@@ -11,7 +11,6 @@ import {
   ProductCollection,
   SideMenu,
 } from '../../components';
-import Counter from '../../components/counter/Counter';
 import styles from './HomePage.module.css';
 import { productList1, productList2, productList3 } from './mockups';
 
@@ -19,8 +18,6 @@ export const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
-
-      <Counter />
       {/* 页面内容 content */}
       <div className={styles['page-content']}>
         <Row style={{ marginTop: 20 }}>

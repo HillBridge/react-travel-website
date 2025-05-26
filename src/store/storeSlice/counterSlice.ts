@@ -32,4 +32,4 @@ const counterSlice = createSlice({
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 // 导出 reducer
-export default counterSlice.reducer;
+export const counterReducer = counterSlice.reducer;

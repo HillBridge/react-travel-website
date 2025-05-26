@@ -1,12 +1,25 @@
 import { GlobalOutlined } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
 import { Button, Dropdown, Input, Layout, Menu, Space, Typography } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
+import { useDispatch, useSelector } from '../../store/hooks';
+import { setLanguage } from '../../store/storeSlice/languageSlice';
 import styles from './Header.module.css';
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state.language.value);
+  const languageList = useSelector((state) => state.language.list);
+  const handleLanguageChange: MenuProps['onClick'] = (e: any) => {
+    if (e.key === 'zh') {
+      dispatch(setLanguage('zh'));
+    } else {
+      dispatch(setLanguage('en'));
+    }
+  };
   return (
     <>
       <div className={styles['top-header']}>
@@ -14,14 +27,15 @@ export const Header: React.FC = () => {
           <Typography.Text className={styles.slogan}>让旅游更幸福</Typography.Text>
           <Dropdown.Button
             menu={{
-              items: [
-                { key: '1', label: '中文' },
-                { key: '2', label: 'English' },
-              ],
+              items: languageList.map((item) => ({
+                key: item.code,
+                label: item.name,
+              })),
+              onClick: handleLanguageChange,
             }}
             icon={<GlobalOutlined />}
           >
-            语言
+            {language}
           </Dropdown.Button>
           <Space.Compact className={styles['button-group']}>
             <Button onClick={() => navigate('/register')}>注册</Button>
