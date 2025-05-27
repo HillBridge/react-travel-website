@@ -18,7 +18,7 @@ import styles from './HomePage.module.css';
 export const HomePage: React.FC = () => {
   const { t } = useTranslation('home');
   const [productList, setProductList] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {

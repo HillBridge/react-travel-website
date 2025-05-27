@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import stateLoggerMiddleware from './middleware/loggerMiddleware';
 import { counterReducer, languageReducer } from './storeSlice';
 
 // 创建 store
@@ -8,6 +9,7 @@ export const store = configureStore({
     language: languageReducer,
     // ... 其他 reducers
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stateLoggerMiddleware),
 });
 
 // 定义 RootState 类型 (用于 useSelector)
