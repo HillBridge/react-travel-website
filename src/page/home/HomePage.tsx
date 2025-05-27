@@ -1,5 +1,6 @@
-import { Col, Row, Typography } from 'antd';
-import React from 'react';
+import { Col, Row, Spin, Typography } from 'antd';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
@@ -13,10 +14,37 @@ import {
   SideMenu,
 } from '../../components';
 import styles from './HomePage.module.css';
-import { productList1, productList2, productList3 } from './mockups';
 
 export const HomePage: React.FC = () => {
   const { t } = useTranslation('home');
+  const [productList, setProductList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get('http://82.157.43.234:8080/api/productCollections');
+      setProductList(data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />
@@ -37,7 +65,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage}
-          products={productList1}
+          products={productList[0]?.touristRoutes}
         />
         <ProductCollection
           title={
@@ -46,7 +74,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage2}
-          products={productList2}
+          products={productList[1]?.touristRoutes}
         />
         <ProductCollection
           title={
@@ -55,7 +83,7 @@ export const HomePage: React.FC = () => {
             </Typography.Title>
           }
           sideImage={sideImage3}
-          products={productList3}
+          products={productList[2]?.touristRoutes}
         />
         <BusinessPartners />
       </div>

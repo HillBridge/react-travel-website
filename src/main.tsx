@@ -7,6 +7,9 @@ import './i18n';
 import './index.css';
 import { store } from './store';
 
+import axios from 'axios';
+axios.defaults.headers['x-icode'] = 'F5F433A587BDBCC7';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Suspense fallback={<div>Loading translations...</div>}>
