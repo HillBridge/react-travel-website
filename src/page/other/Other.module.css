@@ -1,0 +1,61 @@
+.container {
+  width: 700px; /* 构建后会转换为 (700/750)*100 vw */
+  height: 200px;
+  /* padding: 20px; */
+  margin: 10px auto;
+  border: 1px solid greenyellow;
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+  flex-direction: row;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: #007bff;
+  color: white;
+  /* 最小字体 12px，最大字体 18px (物理像素，根据需要调整) */
+  font-size: clamp(24px, 28px, 36px);
+  line-height: 100px;
+  text-align: center;
+  /* border: 2px solid blue; 构建后 border-width 会转换为 vw */
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    transform: scaleY(0.5);
+    transform-origin: 0 100%;
+  }
+}
+
+.ignore-font {
+  font-size: 32px; /* 这个不会被转换为 vw */
+}
+
+.thin-border.hairlines {
+  border-bottom: 1px solid #ccc; /* 这个 1px 不会被转换为 vw */
+}
+
+@media (max-width: 374px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .item {
+    margin-bottom: 20px;
+    width: 80%;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 3dppx) {
+  .hairline-bottom::after {
+    transform: scaleY(0.33333);
+  }
+}
