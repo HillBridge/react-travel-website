@@ -1,0 +1,18 @@
+.ignore-font {
+  font-size: 32px; /* 这个不会被转换为 vw */
+}
+
+.hairlines {
+  border-bottom: 1px solid #ccc;
+}
+
+.ignore-this-class {
+  /* 这个类名在 selectorBlacklist 中，其属性不应被转换为 vw */
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid red;
+  background-color: lightcoral;
+  margin-bottom: 20px;
+}

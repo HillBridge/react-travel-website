@@ -35,14 +35,6 @@
   }
 }
 
-.ignore-font {
-  font-size: 32px; /* 这个不会被转换为 vw */
-}
-
-.thin-border.hairlines {
-  border-bottom: 1px solid #ccc; /* 这个 1px 不会被转换为 vw */
-}
-
 @media (max-width: 374px) {
   .container {
     flex-direction: column;

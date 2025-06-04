@@ -9,11 +9,19 @@ export default {
       propList: ['*'], // 能转化为vw的属性列表，['*']表示所有属性,'!font-size'表示禁用字体转换
       viewportUnit: 'vw', // 希望使用的视口单位
       fontViewportUnit: 'vw', // 字体使用的视口单位
-      selectorBlacklist: ['.ignore-', '.hairlines'], // 需要忽略的CSS选择器，不会转为视口单位，使用原有的px等单位。
+      selectorBlacklist: [], // 需要忽略的CSS选择器，不会转为视口单位，使用原有的px等单位。
       minPixelValue: 1, // 设置最小的转换数值，如果设置为1，只有大于1的值会被转换
       mediaQuery: false, // هل يسمح بتحويل وحدات البكسل في استعلامات الوسائط @media
       replace: true, // هل يستبدل القاعدة التي تحتوي على وحدات vw بدلاً من إضافتها.
-      exclude: undefined, // 设置忽略文件，用正则做目录名匹配，例如 /node_modules/
+      // exclude: [
+      //   /node_modules/i, // 通常也会排除 node_modules
+      // ],
+      exclude: [
+        /(?<!\.module)\.css$/i, // 排除所有不以 .module.css 结尾的 .css 文件
+        // 这个正则使用了反向预查 (negative lookbehind)
+        // 意思是：匹配 .css 结尾，但前面不能是 .module
+        /node_modules/i,
+      ],
       landscape: false, // 是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)
       landscapeUnit: 'vw', // 横屏时使用的单位
       landscapeWidth: 1334, // 横屏时使用的视口宽度
